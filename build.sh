@@ -6,8 +6,7 @@ mkdir -p "$outdir"
 
 mapfile -t sources < <(typst query $input metadata --field value | jq -c '.[]')
 for i in "${!sources[@]}"; do
-    content=$(jq -r <<<"${sources[i]}")
-    echo "$content" | typst compile - "minipages/$i.svg"
+    (jq -r <<<"${sources[i]}") | typst compile - "minipages/$i.svg"
 done
 
 typst compile $@ --input fallback=false
