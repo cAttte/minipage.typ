@@ -10,4 +10,4 @@ for i in "${!sources[@]}"; do
     echo "$content" | typst compile - "minipages/$i.svg"
 done
 
-typst compile "$input" --input fallback=false
+typst compile $@ --input fallback=false
